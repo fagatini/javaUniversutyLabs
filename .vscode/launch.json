@@ -14,8 +14,7 @@
             "type": "java",
             "name": "Launch Main",
             "request": "launch",
-            "mainClass": "Main",
-            "projectName": "CollectionsFromCSV"
+            "mainClass": "Main"
         }
     ]
 }
