@@ -1,30 +1,30 @@
 import com.opencsv.exceptions.CsvValidationException;
-import data.services.mapper.HumanMapper;
-import data.services.parser.HumanParser;
-import data.services.csv.reader.ReaderFromCSV;
+
+import data.Person;
+import scv.ReaderCSV;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class Main {
+public class Main 
+{
 
-    public static void main(String[] args) throws IOException, CsvValidationException {
-        var reader = new ReaderFromCSV();
-        var parser = new HumanParser();
-        var mapper = new HumanMapper();
-        var results = new ArrayList<>();
+    public static void main(String[] args) throws IOException, CsvValidationException 
+    {
+        var readerCSV = new ReaderCSV();
+        var resultList = new ArrayList<>();
 
-        String[] record;
+        String[] dataLine = readerCSV.readNext();
 
-        while ((record = reader.readNext()) != null) {
-            var humanDto = parser.parse(record);
-            var human = mapper.toDomain(humanDto);
-            results.add(human);
+        while (dataLine!= null) 
+        {
+            var ActualPerson = new Person(dataLine);
+            resultList.add(ActualPerson);
+            dataLine = readerCSV.readNext();
         }
 
-        System.out.println(results);
-
-        reader.close();
+        System.out.println(resultList);
+        readerCSV.close();
     }
 }

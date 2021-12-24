@@ -1,4 +1,4 @@
-package data.services.csv.reader;
+package scv;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -6,20 +6,26 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class ReaderFromCSV {
+public class ReaderCSV 
+{
     private static final String FILE_NAME = "foreign_names.csv";
     CSVReader reader = new CSVReader(new FileReader(FILE_NAME));
 
-    public ReaderFromCSV() throws IOException, CsvValidationException {
-        // Read useless line.
+    public ReaderCSV() throws IOException, CsvValidationException 
+    {
         reader.readNext();
     }
 
-    public String[] readNext() throws CsvValidationException, IOException {
+    /** 
+     * @return String[] get string line of data from scv
+     */
+    public String[] readNext() throws CsvValidationException, IOException 
+    {
         return reader.readNext();
     }
 
-    public void close() throws IOException {
+    public void close() throws IOException 
+    {
         reader.close();
     }
 }
